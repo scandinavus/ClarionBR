@@ -1,0 +1,35 @@
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 28/05/2013
+ ~ Hora: 17:31
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(DevCon2013_Clnt.Web_References.wsBarCodSoft)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+Report        CLASS(),TYPE,NETCLASS,PARTIAL
+InitializeComponent     PROCEDURE(),PRIVATE
+				    END  
+
+	!!! <summary>
+	!!! This method is required for Windows Forms designer support.
+	!!! Do not change the method contents inside the source code editor. The Forms designer might
+	!!! not be able to load this method if it was changed manually.
+	!!! </summary>
+Report.InitializeComponent PROCEDURE()
+	CODE
+		! 
+		! Report
+		! 
+		SELF.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		SELF.ClientSize = new System.Drawing.Size(292, 266)
+		SELF.Text &= 'Report'
+		SELF.Name &= 'Report'
+

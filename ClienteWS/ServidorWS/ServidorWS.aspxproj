@@ -1,0 +1,56 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1DD963D0-33DA-4188-8B8A-11087E137DB9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin\</OutputPath>
+    <IISWebVirtualDir>ServidorWS</IISWebVirtualDir>
+    <ProjectStartPage>Service.asmx</ProjectStartPage>
+    <IsAspProject>true</IsAspProject>
+    <WebServerType>Dev</WebServerType>
+    <CopyPrivateAssemblies>True</CopyPrivateAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Cecil.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.ClarionCodeProvider.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\SoftVelocity.Clarion.ClarionCodeProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.CompilerMessages.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\SoftVelocity.Clarion.CompilerMessages.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.FileIO.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\SoftVelocity.Clarion.FileIO.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.Runtime.Classes.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\SoftVelocity.Clarion.Runtime.Classes.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.Runtime.Procedures.dll">
+      <Private>True</Private>
+      <HintPath>%24%28ClaNetBinPath%29\SoftVelocity.Clarion.Runtime.Procedures.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\Service.asmx.cln">
+      <DependentUpon>Service.asmx</DependentUpon>
+    </Compile>
+    <None Include="Equates.cln" />
+    <None Include="Property.cln" />
+    <None Include="Service.asmx" />
+    <None Include="Web.config" />
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNetAsp.targets" />
+</Project>

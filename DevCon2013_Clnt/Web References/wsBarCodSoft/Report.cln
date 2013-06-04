@@ -1,0 +1,30 @@
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 28/05/2013
+ ~ Hora: 17:31
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(DevCon2013_Clnt.Web_References.wsBarCodSoft)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+	!!! <summary>
+	!!! Description of Report.
+	!!! </summary>
+Report        CLASS(System.Windows.Forms.Form),TYPE,NETCLASS,PARTIAL
+CONSTRUCT       	    PROCEDURE(),PUBLIC
+					END  
+
+Report.CONSTRUCT  PROCEDURE()
+	CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+		SELF.InitializeComponent()            
+

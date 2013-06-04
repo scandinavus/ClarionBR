@@ -1,0 +1,22 @@
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 27/05/2013
+ ~ Hora: 16:29
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+					PROGRAM
+
+					NAMESPACE(DevCon2013_Clnt)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+	CODE
+		!These functions are used to enable XP visual styles for application.
+		Application.EnableVisualStyles()
+		Application.SetCompatibleTextRenderingDefault(false) 
+		Application.Run(NEW MainForm())
+

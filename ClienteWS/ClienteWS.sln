@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# Clarion 2.1.0.2447
+Project("{83C2234D-9564-46a1-BCC0-8437264CB6AA}") = "ClienteWS", "ClienteWS.cnproj", "{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal

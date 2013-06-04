@@ -1,0 +1,88 @@
+
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 27/05/2013
+ ~ Hora: 12:12
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+ MEMBER('')
+
+ NAMESPACE DevCon2013_srv
+ MAP
+ END
+
+ USING System
+ USING System.Data
+ USING System.Web
+ USING System.Web.Services
+ USING System.Web.Services.Protocols
+ USING Clarion.RTL
+
+[WebService(Description='This is my WebService description.')]
+MyService           CLASS(System.Web.Services.WebService),TYPE,NETCLASS,PARTIAL
+[WebMethod(Description='Retorna a soma dos valores entre pInicio e pFinal')]
+fncRetornaInt           PROCEDURE(System.Int32 pInicio, System.Int32 pFinal),System.Int32,PUBLIC
+[WebMethod(Description='Retorna um texto que será o Espelho do texto enviado.')]
+fncRetornaString        PROCEDURE(System.String pTexto),System.String,PUBLIC
+[WebMethod(Description='Retorna uma Tabela de Dados.')]
+fncRetornaTable         PROCEDURE(System.String name),System.Data.DataTable,PUBLIC
+ END
+
+MyService.fncRetornaInt       PROCEDURE(int32 pInicio, int32 pFinal)
+Soma                    Int32
+i                       int32
+    CODE
+        Soma = 0
+        Loop i = pInicio to pFinal
+            Soma += i 
+        END
+        
+        RETURN Soma 
+        
+
+MyService.fncRetornaString    PROCEDURE(System.String pTexto)
+i                                   int32 
+iTam                                int32
+sResult                             String
+    CODE
+        sResult = ''
+        Loop i = pTexto.Length to 1 by -1
+            sResult = sResult & pTexto.Substring(i-1,1)
+        end
+        RETURN sResult
+        
+
+MyService.fncRetornaTable PROCEDURE(System.String pTabela)
+dr                          System.Data.DataRow
+dtAux                          DataTable
+    CODE
+        dtAux = new DataTable(pTabela)
+       
+        dtAux.Columns.Add('Id',Typeof(Int32))
+        dtAux.Columns.Add('Descricao',Typeof(String))
+        dtAux.Columns.Add('Valor',TypeOf(Double))
+        dtAux.Columns.Add('Tipo',TypeOf(String))
+        dtAux.Columns.Add('Data',TypeOf(DateTime))
+        
+        ! Inserindo uma linha de Dados
+        dtAux.Rows.Add(1,'Serviço Prestado','256,00','Credito',DateTime.Now);
+        dtAux.Rows.Add(2,'Telefone','526,00','Debito',DateTime.Parse('08/05/2013'));
+        dtAux.Rows.Add(3,'Aluguel Apto','262,34','Debito',DateTime.Parse('10/05/2013'));
+        dtAux.Rows.Add(4,'Flat Meridian','1324,65','Credito',DateTime.Parse('12/05/2013'));
+        dtAux.Rows.Add(5,'IPTU','256,00','Debito',DateTime.Now);
+        dtAux.Rows.Add(6,'Luz','526,00','Debito',DateTime.Parse('08/05/2013'));
+        dtAux.Rows.Add(7,'Aluguel Garagem','262,34','Debito',DateTime.Parse('10/05/2013'));
+        dtAux.Rows.Add(8,'Flat Meridian','1324,65','Credito',DateTime.Parse('12/05/2013'));
+        
+        dr = dtAux.NewRow()
+        dr['Id'] = 9
+        dr['Descricao'] = 'DevCon'
+        dr['Valor'] = '234,56'
+        dr['Tipo'] = 'Credito'
+        dr['Data'] = DateTime.Parse('28/05/2013')
+        dtAux.Rows.Add(dr)
+
+     RETURN dtAux

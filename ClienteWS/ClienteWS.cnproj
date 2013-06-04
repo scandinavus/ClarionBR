@@ -1,0 +1,94 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A2C5E7B4-EA82-4F22-B071-BCFA9542F807}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ClienteWS</RootNamespace>
+    <AssemblyName>ClienteWS</AssemblyName>
+    <CatchAll>True</CatchAll>
+    <ExportDll>False</ExportDll>
+    <NoAutoRef>False</NoAutoRef>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>False</CopyCoreAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <CopyCoreAssemblies>True</CopyCoreAssemblies>
+    <Optimize>False</Optimize>
+    <SuppressWarning>False</SuppressWarning>
+    <DefineDEBUG>True</DefineDEBUG>
+    <DefineTRACE>True</DefineTRACE>
+    <NetDriversSupport>False</NetDriversSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cln" />
+    <Compile Include="Main.cln" />
+    <Compile Include="MainForm.cln" />
+    <Compile Include="MainForm.Designer.cln">
+      <DependentUpon>MainForm.cln</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsCorreios\Reference.cln">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsDevCon2013\Reference.cln">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <None Include="Web References\wsCorreios\CalcPrecoPrazo.disco" />
+    <None Include="Web References\wsCorreios\CalcPrecoPrazo.wsdl" />
+    <None Include="Web References\wsCorreios\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsDevCon2013\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsDevCon2013\Service.disco" />
+    <None Include="Web References\wsDevCon2013\Service.wsdl" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cln</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+    <WebReferenceUrl Include="http://localhost/wsDevCon2013/Service.asmx">
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://localhost/wsDevCon2013/Service.asmx</UpdateFromURL>
+      <RelPath>Web References\wsDevCon2013</RelPath>
+      <Namespace>ClienteWS.wsDevCon2013</Namespace>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx">
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx</UpdateFromURL>
+      <RelPath>Web References\wsCorreios</RelPath>
+      <Namespace>ClienteWS.wsCorreios</Namespace>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNet.targets" />
+</Project>

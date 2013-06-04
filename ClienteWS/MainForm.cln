@@ -1,0 +1,203 @@
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares 
+ ~ Data: 25/04/2013
+ ~ Hora: 10:48
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+					MEMBER('')
+
+					NAMESPACE(ClienteWS)
+	USING(System)
+	USING(System.Drawing)
+    USING(System.Windows.Forms)
+    USING Clarion.Data
+    USING System.Data
+
+	!!! <summary>
+	!!! Description of ${ClassName}.
+	!!! </summary>
+MainForm            CLASS(System.Windows.Forms.Form),TYPE,NETCLASS,PARTIAL
+CONSTRUCT               PROCEDURE(),PUBLIC
+Button1_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+MainForm_Load           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+BtnProcessarValor_Click PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+BtnProcessarTexto_Click PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+btnProcessarDataTable_Click            PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+CbServico_SelectedIndexChanged  PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+BtnProcessarTPS_Click   PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+BtnNroRec_Click         PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+                    END
+
+!Movimento           FILE,DRIVER('TOPSPEED'),NAME('C:\GesCla_2013\ServidorWS\Movimento.TPS'),PRE(Mov),CREATE
+!record                  RECORD
+!id                          CLALONG
+!Descricao                   CLASTRING(70)
+!Valor                       CLALONG
+!Tipo                        CLASTRING(20)
+!dtCadastro                  DATE
+!                        END
+!                    END
+
+
+MainForm.CONSTRUCT  PROCEDURE()
+    CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+        SELF.InitializeComponent()
+
+
+MainForm.Button1_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsCor                           wsCorreios.CalcPrecoPrazoWS
+wsResult                        wsCorreios.cResultado
+wsServico                       wsCorreios.cServico
+sAux                            String
+
+    CODE
+        
+        wsCor = NEW wsCorreios.CalcPrecoPrazoWS()
+        ! CodEmpresa '' Branco
+        ! Senha     '' Branco 
+        ! CodServico (40010 SEDEX Varejo, 40045 SEDEX a Cobrar Varejo, 40215 SEDEX 10 Varejo, 40290 SEDEX Hoje Varejo, 41106 PAC Varejo)
+        ! Cep Origem
+        ! Cep Destino
+        ! Peso
+        ! Codigo Formato ( 1– Formato caixa/pacote, 2– Formato rolo/prisma, 3- Envelope)
+        ! Comprimento
+        ! Altura 
+        ! Largura 
+        ! Diametro
+        ! Codgo Mão Propria  (S/N)
+        ! Valor Declarado
+        ! Codigo Aviso Entrega (S/N)
+        sAux = self.cbServico.Text.Substring(0,5)
+        TRY
+            wsResult = wsCor.CalcPrecoPrazo('','',sAux, self.edtCepOrig.Text, self.edtCepDest.Text,'1','1','20','11','11','0','S',self.edtValorDecl.Text,'N')
+            self.edtResultado.Items.Clear()
+            FOREACH( wsServico in wsResult.Servicos)
+                if wsServico.Erro <> '0'
+                    self.edtResultado.Items.Add('********************************************')
+                    self.edtResultado.Items.Add(wsServico.Codigo)
+                    self.edtResultado.Items.Add(wsServico.Erro & ' - ' & wsServico.MsgErro)
+                    self.edtResultado.Items.Add('********************************************')
+                ELSE               
+                    self.edtResultado.Items.Add('Servico - ' & wsServico.Codigo)
+                    self.edtResultado.Items.Add('Prazo Entrega - ' & wsServico.PrazoEntrega)
+                    self.edtResultado.Items.Add('Valor - ' & wsServico.Valor)
+                    self.edtResultado.Items.Add('Valor Aviso - ' & wsServico.ValorAvisoRecebimento)
+                    self.edtResultado.Items.Add('Valor Declarado- ' & wsServico.ValorValorDeclarado)
+                    self.edtResultado.Items.Add('Valor Mao Propria- ' & wsServico.ValorMaoPropria)
+                    self.edtResultado.Items.Add('Entrega Domiciliar - ' & wsServico.EntregaDomiciliar)
+                    self.edtResultado.Items.Add('Entrega Sadado - ' & wsServico.EntregaSabado)
+                    self.edtResultado.Items.Add('============================================')
+                
+                END
+            END
+        CATCH (Exception er)
+            MessageBox.Show(er.Message,'Erro de Processamento')
+        FINALLY
+            wsCor.Dispose()
+        END
+        
+
+MainForm.MainForm_Load      PROCEDURE(System.Object sender, System.EventArgs e)
+    CODE
+        
+
+MainForm.BtnProcessarValor_Click    PROCEDURE(System.Object sender, System.EventArgs e)
+wsDevCon                                wsDevCon2013.wsGescla_2013
+    CODE
+        if string.IsNullOrEmpty(self.edtValorInic.Text) or string.IsNullOrEmpty(self.edtValorFinal.Text)
+            MessageBox.Show('Não é permitido valor vazio. Verifique.','Intervalo Inválido', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            RETURN
+        END
+        if int32.Parse(self.edtValorInic.Text) > int32.Parse(self.edtValorFinal.Text)
+            MessageBox.Show('Valor Inicial deve ser menor ou igual ao Valor Final. Verifique.','Intervalo Inválido', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            RETURN
+        END
+        
+        wsDevCon = new wsDevCon2013.wsGescla_2013()
+        try
+            self.edtVlrResultado.Text = wsDevCon.fnValor(Int32.Parse(self.edtValorInic.Text), Int32.Parse(self.edtValorFinal.Text)).ToString()
+        CATCH (Exception er)
+            MessageBox.Show(er.Message,'Erro de Processamento')
+        FINALLY
+            wsDevCon.Dispose()
+        END 
+
+MainForm.BtnProcessarTexto_Click    PROCEDURE(System.Object sender, System.EventArgs e)
+wsDevCon                                wsDevCon2013.wsGescla_2013
+    CODE
+        if string.IsNullOrEmpty(self.edtCodigo.Text) 
+            MessageBox.Show('Não é permitido valor vazio. Verifique.','Valor Inválido', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            RETURN
+        END
+        wsDevCon = new wsDevCon2013.wsGescla_2013()
+        self.lblResultado.Text = wsDevCon.fnTexto(self.edtCodigo.Text)
+        wsDevCon.Dispose()
+
+MainForm.btnProcessarDataTable_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+    CODE
+        TRY
+            SELF.sqlConnection1.Open()
+            self.sqlDataAdapter1.Fill(self.dataSet1,'Painelista')
+            !self.dgDataTable.AutoGenerateColumns = TRUE
+            self.dgDataTable.DataSource = self.dataSet1
+            self.dgDataTable.DataMember = 'Painelista'
+            self.dgDataTable.Refresh()
+        catch (Exception er)
+            MessageBox.Show(er.Message,'Erro do SQL')
+        FINALLY
+            self.sqlConnection1.Close()
+        END
+
+MainForm.CbServico_SelectedIndexChanged     PROCEDURE(System.Object sender, System.EventArgs e)
+sAux                                            String
+    CODE
+        sAux = self.cbServico.Items[self.cbServico.SelectedIndex]
+        if sAux.Substring(0,5) = 40045
+            self.edtValorDecl.Text = 0
+            self.edtValorDecl.Visible = TRUE
+        ELSE
+            self.edtValorDecl.Text = 0
+            self.edtValorDecl.Visible = FALSE
+        END
+
+MainForm.BtnProcessarTPS_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsDevCon                                wsDevCon2013.wsGescla_2013
+tblTPS                                  DataTable
+    code
+        wsDevCon = new wsDevCon2013.wsGescla_2013()
+        TRY 
+            tblTPS = wsDevCon.fnDataTps(self.edtDataInicTPS.Text, self.edtDataFimTPS.Text)
+            if (self.dsDemo.Tables[tblTPS.TableName] <> NULL)
+                self.dsDemo.Tables.Remove(tblTPS.TableName)
+            END
+            self.dsDemo.Tables.Add(tblTPS)
+            self.dgTPS.AutoGenerateColumns = TRUE
+            self.dgTPS.DataSource = self.dsDemo
+            self.dgTPS.DataMember = tblTPS.TableName
+            self.dgTPS.Refresh
+        CATCH (Exception er)
+            MessageBox.Show(er.Message,'Erro de Processamento')
+        FINALLY
+            wsDevCon.Dispose()
+        END
+
+MainForm.BtnNroRec_Click    PROCEDURE(System.Object sender, System.EventArgs e)
+wsDevCon                                wsDevCon2013.wsGescla_2013
+NroRec                                  Int32
+    code
+        wsDevCon = new wsDevCon2013.wsGescla_2013()
+        TRY
+            NroRec = wsDevCon.fnRecordsTps()
+            MessageBox.Show('Nro. de Registro: ' & NroRec.ToString(), 'Nro. Registro')
+        CATCH (Exception er)
+            MessageBox.Show(er.Message,'Erro de Processamento')
+        FINALLY
+            wsDevCon.Dispose()
+        END
+        

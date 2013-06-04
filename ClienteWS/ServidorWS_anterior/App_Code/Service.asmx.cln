@@ -1,0 +1,66 @@
+
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 25/04/2013
+ ~ Hora: 16:02
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+ MEMBER('')
+
+ NAMESPACE ServidorWS
+ MAP
+ END
+
+ USING System
+ USING System.Data
+ USING System.Web
+ USING System.Web.Services
+ USING System.Web.Services.Protocols
+
+[WebService(Description='WebService GesCla 2013 - Demonstração.')]
+wsGescla_2013 CLASS(System.Web.Services.WebService),TYPE,NETCLASS,PARTIAL
+[WebMethod(Description='Retorna um Valor ')]
+fnValor      PROCEDURE(SIGNED pInicio, SIGNED pFinal),SIGNED,PUBLIC
+[WebMethod(Description='Retorna um texto da .')]
+fnTexto      PROCEDURE(SIGNED pId),System.String,PUBLIC
+[WebMethod(Description='Returna um DataTable.')]
+fnDataTable  PROCEDURE(System.String pDtInicio, System.String pDtFinal),System.Data.DataTable,PUBLIC
+ END
+
+wsGescla_2013.fnValor       PROCEDURE(SIGNED pInicio, SIGNED pFinal)
+Ret                             SIGNED
+    CODE
+        LOOP i# = pInicio to pFinal
+            Ret += i#
+        END
+    RETURN Ret
+
+wsGescla_2013.fnTexto       PROCEDURE(SIGNED pId)
+Ret                             System.String
+
+    CODE
+        Ret = 'Texto Retornado'
+    RETURN Ret
+
+wsGescla_2013.fnDataTable   PROCEDURE(System.String pDtInicio, System.String pDtFinal)
+dtAux                           System.Data.DataTable
+rowAux                          System.Data.DataRow
+    CODE
+        dtAux = new System.Data.DataTable('Teste');
+        dtAux.Columns.Add('Id',Typeof(Int32))
+        dtAux.Columns.Add('Descricao',Typeof(String))
+        dtAux.Columns.Add('Valor',TypeOf(Double))
+        dtAux.Columns.Add('Tipo',TypeOf(String))
+        dtAux.Columns.Add('Data',TypeOf(DateTime))
+        
+        ! Inserindo uma linha de Dados
+        dtAux.Rows.Add(5,'IPTU','256,00','Debito',DateTime.Now);
+        dtAux.Rows.Add(6,'Luz','526,00','Debito',DateTime.Parse('08/05/2013'));
+        dtAux.Rows.Add(7,'Aluguel Garagem','262,34','Debito',DateTime.Parse('10/05/2013'));
+        dtAux.Rows.Add(8,'Flat Meridian','1324,65','Credito',DateTime.Parse('12/05/2013'));
+        
+    RETURN dtAux
+        

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebService GesCla 2013 - Demonstração.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:element name="fnValor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pInicio" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pFinal" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnValorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fnValorResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnTexto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnTextoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fnTextoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnDataTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pDtInicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pDtFinal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnDataTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fnDataTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnDataTps">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pDtInicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pDtFinal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnDataTpsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fnDataTpsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="fnRecordsTps">
+        <s:complexType />
+      </s:element>
+      <s:element name="fnRecordsTpsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fnRecordsTpsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="fnValorSoapIn">
+    <wsdl:part name="parameters" element="tns:fnValor" />
+  </wsdl:message>
+  <wsdl:message name="fnValorSoapOut">
+    <wsdl:part name="parameters" element="tns:fnValorResponse" />
+  </wsdl:message>
+  <wsdl:message name="fnTextoSoapIn">
+    <wsdl:part name="parameters" element="tns:fnTexto" />
+  </wsdl:message>
+  <wsdl:message name="fnTextoSoapOut">
+    <wsdl:part name="parameters" element="tns:fnTextoResponse" />
+  </wsdl:message>
+  <wsdl:message name="fnDataTableSoapIn">
+    <wsdl:part name="parameters" element="tns:fnDataTable" />
+  </wsdl:message>
+  <wsdl:message name="fnDataTableSoapOut">
+    <wsdl:part name="parameters" element="tns:fnDataTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="fnDataTpsSoapIn">
+    <wsdl:part name="parameters" element="tns:fnDataTps" />
+  </wsdl:message>
+  <wsdl:message name="fnDataTpsSoapOut">
+    <wsdl:part name="parameters" element="tns:fnDataTpsResponse" />
+  </wsdl:message>
+  <wsdl:message name="fnRecordsTpsSoapIn">
+    <wsdl:part name="parameters" element="tns:fnRecordsTps" />
+  </wsdl:message>
+  <wsdl:message name="fnRecordsTpsSoapOut">
+    <wsdl:part name="parameters" element="tns:fnRecordsTpsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsGescla_2013Soap">
+    <wsdl:operation name="fnValor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna um Valor </wsdl:documentation>
+      <wsdl:input message="tns:fnValorSoapIn" />
+      <wsdl:output message="tns:fnValorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="fnTexto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna um texto .</wsdl:documentation>
+      <wsdl:input message="tns:fnTextoSoapIn" />
+      <wsdl:output message="tns:fnTextoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna um DataTable.</wsdl:documentation>
+      <wsdl:input message="tns:fnDataTableSoapIn" />
+      <wsdl:output message="tns:fnDataTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTps">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna um DataTable de um arquivo TPS.</wsdl:documentation>
+      <wsdl:input message="tns:fnDataTpsSoapIn" />
+      <wsdl:output message="tns:fnDataTpsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="fnRecordsTps">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna o numero de Registros de um arquivo TPS.</wsdl:documentation>
+      <wsdl:input message="tns:fnRecordsTpsSoapIn" />
+      <wsdl:output message="tns:fnRecordsTpsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsGescla_2013Soap" type="tns:wsGescla_2013Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="fnValor">
+      <soap:operation soapAction="http://tempuri.org/fnValor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnTexto">
+      <soap:operation soapAction="http://tempuri.org/fnTexto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTable">
+      <soap:operation soapAction="http://tempuri.org/fnDataTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTps">
+      <soap:operation soapAction="http://tempuri.org/fnDataTps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnRecordsTps">
+      <soap:operation soapAction="http://tempuri.org/fnRecordsTps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsGescla_2013Soap12" type="tns:wsGescla_2013Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="fnValor">
+      <soap12:operation soapAction="http://tempuri.org/fnValor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnTexto">
+      <soap12:operation soapAction="http://tempuri.org/fnTexto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTable">
+      <soap12:operation soapAction="http://tempuri.org/fnDataTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnDataTps">
+      <soap12:operation soapAction="http://tempuri.org/fnDataTps" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fnRecordsTps">
+      <soap12:operation soapAction="http://tempuri.org/fnRecordsTps" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsGescla_2013">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebService GesCla 2013 - Demonstração.</wsdl:documentation>
+    <wsdl:port name="wsGescla_2013Soap" binding="tns:wsGescla_2013Soap">
+      <soap:address location="http://localhost/wsDevCon2013/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsGescla_2013Soap12" binding="tns:wsGescla_2013Soap12">
+      <soap12:address location="http://localhost/wsDevCon2013/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

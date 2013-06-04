@@ -1,0 +1,117 @@
+
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 25/04/2013
+ ~ Hora: 22:37
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+ MEMBER('')
+
+ NAMESPACE wsServicos
+ MAP
+ END
+
+    USING System
+    USING System.Data
+    USING System.Web
+    USING System.Web.Services
+    USING System.Web.Services.Protocols
+    USING Clarion.RTL
+    USING Clarion.Data
+
+Movimento           FILE,DRIVER('TOPSPEED'),NAME('C:\GesCla_2013\Movimento.TPS'),BINDABLE,TYPE, CREATE
+record            RECORD
+id                  CLALONG
+Descricao           CLASTRING(70)
+Valor               CLALONG
+Tipo                CLASTRING(20)
+dtCadastro          DATE
+                  END
+                END
+
+[WebService(Description='WebService GesCla 2013 - Demonstração.')]
+wsGescla_2013 CLASS(System.Web.Services.WebService),TYPE,NETCLASS,PARTIAL
+[WebMethod(Description='Retorna um Valor ')]
+fnValor             PROCEDURE(SIGNED pInicio, SIGNED pFinal),SIGNED,PUBLIC
+[WebMethod(Description='Retorna um texto .')]
+fnTexto             PROCEDURE(SIGNED pId),System.String,PUBLIC
+[WebMethod(Description='Retorna um DataTable.')]
+fnDataTable         PROCEDURE(System.String pDtInicio, System.String pDtFinal),System.Data.DataTable,PUBLIC
+[WebMethod(Description='Retorna um DataTable de um arquivo TPS.')]
+fnDataTps           PROCEDURE(System.String pDtInicio, System.String pDtFinal),DataTable,PUBLIC
+[WebMethod(Description='Retorna o numero de Registros de um arquivo TPS.')]
+fnRecordsTps        PROCEDURE ,Int32,PUBLIC
+
+END
+
+wsGescla_2013.fnValor       PROCEDURE(SIGNED pInicio, SIGNED pFinal)
+Ret                             SIGNED
+    CODE
+        LOOP i# = pInicio to pFinal
+            Ret += i#
+        END
+        RETURN Ret
+
+wsGescla_2013.fnTexto       PROCEDURE(SIGNED pId)
+Ret                             System.String
+    CODE
+        Ret = 'Texto Retornado [' & pId & ']'
+        RETURN Ret
+
+wsGescla_2013.fnDataTable   PROCEDURE(System.String pDtInicio, System.String pDtFinal)
+dtAux                          DataTable
+    CODE
+        dtAux = new DataTable('Movimento')
+       
+        dtAux.Columns.Add('Id',Typeof(Int32))
+        dtAux.Columns.Add('Descricao',Typeof(String))
+        dtAux.Columns.Add('Valor',TypeOf(Double))
+        dtAux.Columns.Add('Tipo',TypeOf(String))
+        dtAux.Columns.Add('Data',TypeOf(DateTime))
+        
+        ! Inserindo uma linha de Dados
+        dtAux.Rows.Add(1,'Serviço Prestado','256,00','Credito',DateTime.Now);
+        dtAux.Rows.Add(2,'Telefone','526,00','Debito',DateTime.Parse('08/05/2013'));
+        dtAux.Rows.Add(3,'Aluguel Apto','262,34','Debito',DateTime.Parse('10/05/2013'));
+        dtAux.Rows.Add(4,'Flat Meridian','1324,65','Credito',DateTime.Parse('12/05/2013'));
+        dtAux.Rows.Add(5,'IPTU','256,00','Debito',DateTime.Now);
+        dtAux.Rows.Add(6,'Luz','526,00','Debito',DateTime.Parse('08/05/2013'));
+        dtAux.Rows.Add(7,'Aluguel Garagem','262,34','Debito',DateTime.Parse('10/05/2013'));
+        dtAux.Rows.Add(8,'Flat Meridian','1324,65','Credito',DateTime.Parse('12/05/2013'));
+        
+        RETURN dtAux
+        
+wsGescla_2013.fnDataTPS   PROCEDURE(System.String pDtInicio, System.String pDtFinal)
+ArqMov                          &Movimento
+DataTableTPS                    &Clarion.Data.ClaDataTable
+dsTabela                        DataSet
+AdapterTPS                      &ClaFileDataAdapter
+    CODE
+        ArqMov = new Movimento()
+        OPEN(ArqMov)
+       
+       
+        AdapterTPS = new Clarion.Data.ClaFileDataAdapter(ArqMov)
+        dsTabela = New DataSet()
+        
+        AdapterTPS.Fill(dsTabela)
+        AdapterTPS.Dispose()
+        Close(ArqMov)
+
+        RETURN dsTabela.Tables[0] ! DataTableTPS
+        
+wsGescla_2013.fnRecordsTPS  PROCEDURE
+NroRec                          Int32
+ArqMov                          &Movimento
+    CODE
+        ArqMov = new Movimento()
+        OPEN(ArqMov)
+        NroRec = RECORDS(ArqMov)
+        Close(ArqMov)
+        
+        return NroRec
+        
+        

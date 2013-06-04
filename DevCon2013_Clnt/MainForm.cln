@@ -1,0 +1,108 @@
+!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 27/05/2013
+ ~ Hora: 16:29
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+					MEMBER('')
+
+					NAMESPACE(DevCon2013_Clnt)
+	USING(System)
+	USING(System.Drawing)
+    USING(System.Windows.Forms)
+    using System.IO
+
+
+	!!! <summary>
+	!!! Description of ${ClassName}.
+	!!! </summary>
+MainForm            CLASS(System.Windows.Forms.Form),TYPE,NETCLASS,PARTIAL
+CONSTRUCT               PROCEDURE(),PUBLIC
+Button1_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+Button2_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+Button3_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+Base64ToImage           PROCEDURE(byte[] pArray),Image,PRIVATE
+Button4_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+Button5_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+Button6_Click           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+                    END
+
+MainForm.CONSTRUCT  PROCEDURE()
+    CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+        SELF.InitializeComponent()
+
+
+MainForm.Button1_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsDev                           wsDevCon2013.MyService
+iRet                            Int32
+    CODE
+        wsDev = new wsDevCon2013.MyService()
+        iRet = wsDev.fncRetornaInt(Int32.Parse(self.edtInicial.Text), int32.Parse(self.edtFinal.Text))
+        self.lblResultado.Text = 'Resultado = ' & iRet.ToString()
+        wsDev.Dispose()
+        
+        
+
+MainForm.Button2_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsDev                           wsDevCon2013.MyService
+dtAux                           System.Data.DataTable
+    CODE
+        wsDev = new wsDevCon2013.MyService()
+        dtAux = wsDev.fncRetornaTable(self.edtTabela.Text)
+        self.dgTabela.DataSource = dtAux
+        wsDev.Dispose()
+
+MainForm.Button3_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsBarCode                       wsBarCodSoft.BarCodeWebService
+arByte                          BYTE[]
+
+    CODE
+        wsBarCode = new wsBarCodSoft.BarCodeWebService()
+        arByte = wsBarCode.QRCode(self.edtTextoQRCode.Text,wsBarCodSoft.QrcodeErrorLvl.Q25,wsBarCodSoft.QrcodeFormat._45x45,wsBarCodSoft.BcsImageFormat.PNG,wsBarCodSoft.BcsOrientation.Original, 300, 300, '1234567890')
+        self.imgBox.Image = self.Base64ToImage(arByte)
+        wsBarCode.Dispose()
+
+MainForm.Base64ToImage      PROCEDURE(byte[] pArray)
+ms                              MemoryStream    
+imgAux                          Image
+    CODE
+        ms = new MemoryStream(pArray, 0, pArray.Length)
+
+        ms.Write(pArray, 0, pArray.Length)
+        imgAux = Image.FromStream(ms, true)
+        return imgAux
+        
+MainForm.Button4_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsDev                           wsDevCon2013.MyService
+sRet                            System.String
+    CODE
+        wsDev = new wsDevCon2013.MyService()
+        sRet = wsDev.fncRetornaString(self.edtTexto.Text)
+        self.lblResult.Text = 'Resultado = ' & sRet
+        wsDev.Dispose()
+        
+
+MainForm.Button5_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+    CODE
+        self.edtTextoQRCode.Text = ''
+        self.imgBox.Image = null
+        
+
+MainForm.Button6_Click      PROCEDURE(System.Object sender, System.EventArgs e)
+wsCorr                          wsCorreios.CalcPrecoPrazoWS
+Resultado                       wsCorreios.cResultado
+    CODE
+        wsCorr = new wsCorreios.CalcPrecoPrazoWS()
+        resultado = wsCorr.CalcPrazo( '40014','90630180','89012001')
+        if(Resultado.Servicos[0].Erro = ''
+            Stop(Resultado.Servicos[0].PrazoEntrega) 
+        ELSE 
+            Stop(Resultado.Servicos[0].MsgErro) 
+        wsCorr.Dispose()
+                

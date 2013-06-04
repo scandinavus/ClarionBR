@@ -1,0 +1,53 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{16CD1A60-2ADD-40F1-8924-0F1BD8C2E0D6}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin\</OutputPath>
+    <IISWebVirtualDir>DevCon_2013</IISWebVirtualDir>
+    <ProjectStartPage>Service.asmx</ProjectStartPage>
+    <IsAspProject>true</IsAspProject>
+    <WebServerType>IIS</WebServerType>
+    <CopyPrivateAssemblies>True</CopyPrivateAssemblies>
+    <DevWebServerPort>-1</DevWebServerPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' " />
+  <ItemGroup>
+    <Reference Include="ClarionDrv">
+      <HintPath>Bin\ClarionDrv.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Mono.Cecil.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.ClarionCodeProvider.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\SoftVelocity.Clarion.ClarionCodeProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.CompilerMessages.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\SoftVelocity.Clarion.CompilerMessages.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.FileIO.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\SoftVelocity.Clarion.FileIO.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.Runtime.Classes.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\SoftVelocity.Clarion.Runtime.Classes.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftVelocity.Clarion.Runtime.Procedures.dll">
+      <Private>True</Private>
+      <HintPath>C:\Program Files\Clarion.Net\bin\SoftVelocity.Clarion.Runtime.Procedures.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Equates.cln" />
+    <None Include="Property.cln" />
+    <None Include="Service.asmx" />
+    <None Include="Web.config" />
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNetAsp.targets" />
+</Project>

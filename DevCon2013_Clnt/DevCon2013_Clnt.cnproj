@@ -1,0 +1,105 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{C8B0B2E5-2F01-4636-B5A3-85A33B88655E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DevCon2013_Clnt</RootNamespace>
+    <AssemblyName>DevCon2013_Clnt</AssemblyName>
+    <CatchAll>True</CatchAll>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>False</CopyCoreAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>True</CopyCoreAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cln" />
+    <Compile Include="Main.cln" />
+    <Compile Include="MainForm.cln" />
+    <Compile Include="MainForm.Designer.cln">
+      <DependentUpon>MainForm.cln</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsBarCodSoft\Reference.cln">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsBarCodSoft\Report.cln" />
+    <Compile Include="Web References\wsBarCodSoft\Report.Designer.cln">
+      <DependentUpon>Report.cln</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsCorreios\Reference.cln">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\wsDevCon2013\Reference.cln">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <None Include="Web References\wsBarCodSoft\bcdgen.wsdl" />
+    <None Include="Web References\wsBarCodSoft\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsCorreios\CalcPrecoPrazo.disco" />
+    <None Include="Web References\wsCorreios\CalcPrecoPrazo.wsdl" />
+    <None Include="Web References\wsCorreios\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsDevCon2013\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsDevCon2013\Service.disco" />
+    <None Include="Web References\wsDevCon2013\Service.wsdl" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cln</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+    <WebReferenceUrl Include="http://localhost/DevCon2013_srv/Service.asmx">
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://localhost/DevCon2013_srv/Service.asmx</UpdateFromURL>
+      <RelPath>Web References\wsDevCon2013</RelPath>
+      <Namespace>DevCon2013_Clnt.wsDevCon2013</Namespace>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx">
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx</UpdateFromURL>
+      <RelPath>Web References\wsCorreios</RelPath>
+      <Namespace>DevCon2013_Clnt.wsCorreios</Namespace>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://www.barcodesoft.com/bcdgen.asmx%3fWSDL">
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://www.barcodesoft.com/bcdgen.asmx%3fWSDL</UpdateFromURL>
+      <RelPath>Web References\wsBarCodSoft</RelPath>
+      <Namespace>DevCon2013_Clnt.wsBarCodSoft</Namespace>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNet.targets" />
+</Project>

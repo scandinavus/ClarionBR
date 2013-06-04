@@ -1,0 +1,556 @@
+﻿!~
+ ~ Created by Clarion 7.0
+ ~ Usuário: phsoares
+ ~ Data: 25/04/2013
+ ~ Hora: 10:48
+ ~
+ ~ Para alterar este modelo use Ferramentas | Opções | Codificação | Editar Cabeçalhos Padrão.
+ ~!
+
+					MEMBER('')
+
+					NAMESPACE(ClienteWS)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+MainForm            CLASS(),TYPE,NETCLASS,PARTIAL
+InitializeComponent     PROCEDURE(),PRIVATE
+dataSet1 System.Data.DataSet,PRIVATE
+sqlCommand1 System.Data.SqlClient.SqlCommand,PRIVATE
+sqlDataAdapter1 System.Data.SqlClient.SqlDataAdapter,PRIVATE
+sqlConnection1 System.Data.SqlClient.SqlConnection,PRIVATE
+btnProcessarWSCorreio System.Windows.Forms.Button,PRIVATE
+btnProcessarDataTable System.Windows.Forms.Button,PRIVATE
+dgDataTable System.Windows.Forms.DataGrid,PRIVATE
+dgTPS System.Windows.Forms.DataGridView,PRIVATE
+edtDataFimTPS System.Windows.Forms.DateTimePicker,PRIVATE
+edtDataInicTPS System.Windows.Forms.DateTimePicker,PRIVATE
+btnProcessarTPS System.Windows.Forms.Button,PRIVATE
+label9 System.Windows.Forms.Label,PRIVATE
+label10 System.Windows.Forms.Label,PRIVATE
+btnNroRec System.Windows.Forms.Button,PRIVATE
+tabTPS System.Windows.Forms.TabPage,PRIVATE
+components System.ComponentModel.IContainer,PRIVATE
+bindTable System.Windows.Forms.BindingSource,PRIVATE
+edtValorDecl System.Windows.Forms.TextBox,PRIVATE
+cbServico System.Windows.Forms.ComboBox,PRIVATE
+dsDemo System.Data.DataSet,PRIVATE
+edtValorInic System.Windows.Forms.TextBox,PRIVATE
+edtValorFinal System.Windows.Forms.TextBox,PRIVATE
+label5 System.Windows.Forms.Label,PRIVATE
+label6 System.Windows.Forms.Label,PRIVATE
+btnProcessarValor System.Windows.Forms.Button,PRIVATE
+edtVlrResultado System.Windows.Forms.TextBox,PRIVATE
+label7 System.Windows.Forms.Label,PRIVATE
+label8 System.Windows.Forms.Label,PRIVATE
+edtCodigo System.Windows.Forms.TextBox,PRIVATE
+btnProcessarTexto System.Windows.Forms.Button,PRIVATE
+lblResultado System.Windows.Forms.Label,PRIVATE
+edtDataInicial System.Windows.Forms.DateTimePicker,PRIVATE
+label3 System.Windows.Forms.Label,PRIVATE
+label4 System.Windows.Forms.Label,PRIVATE
+edtDataFinal System.Windows.Forms.DateTimePicker,PRIVATE
+tabDataTable System.Windows.Forms.TabPage,PRIVATE
+tabValor System.Windows.Forms.TabPage,PRIVATE
+tabCorreios System.Windows.Forms.TabPage,PRIVATE
+tabTexto System.Windows.Forms.TabPage,PRIVATE
+tabControl1 System.Windows.Forms.TabControl,PRIVATE
+edtResultado System.Windows.Forms.ListBox,PRIVATE
+edtCepDest System.Windows.Forms.TextBox,PRIVATE
+label2 System.Windows.Forms.Label,PRIVATE
+edtCepOrig System.Windows.Forms.TextBox,PRIVATE
+label1 System.Windows.Forms.Label,PRIVATE
+					END
+
+	!!! <summary>
+	!!! This method is required for Windows Forms designer support.
+	!!! Do not change the method contents inside the source code editor. The Forms designer might
+	!!! not be able to load this method if it was changed manually.
+	!!! </summary>
+MainForm.InitializeComponent        PROCEDURE()
+	CODE
+	SELF.components = NEW System.ComponentModel.Container()
+	SELF.tabControl1 = NEW System.Windows.Forms.TabControl()
+	SELF.tabTexto = NEW System.Windows.Forms.TabPage()
+	SELF.lblResultado = NEW System.Windows.Forms.Label()
+	SELF.btnProcessarTexto = NEW System.Windows.Forms.Button()
+	SELF.edtCodigo = NEW System.Windows.Forms.TextBox()
+	SELF.label8 = NEW System.Windows.Forms.Label()
+	SELF.tabValor = NEW System.Windows.Forms.TabPage()
+	SELF.label7 = NEW System.Windows.Forms.Label()
+	SELF.edtVlrResultado = NEW System.Windows.Forms.TextBox()
+	SELF.btnProcessarValor = NEW System.Windows.Forms.Button()
+	SELF.label6 = NEW System.Windows.Forms.Label()
+	SELF.label5 = NEW System.Windows.Forms.Label()
+	SELF.edtValorFinal = NEW System.Windows.Forms.TextBox()
+	SELF.edtValorInic = NEW System.Windows.Forms.TextBox()
+	SELF.tabDataTable = NEW System.Windows.Forms.TabPage()
+	SELF.btnProcessarDataTable = NEW System.Windows.Forms.Button()
+	SELF.edtDataFinal = NEW System.Windows.Forms.DateTimePicker()
+	SELF.label4 = NEW System.Windows.Forms.Label()
+	SELF.label3 = NEW System.Windows.Forms.Label()
+	SELF.edtDataInicial = NEW System.Windows.Forms.DateTimePicker()
+	SELF.dgDataTable = NEW System.Windows.Forms.DataGrid()
+	SELF.dsDemo = NEW System.@@Data.DataSet()
+	SELF.tabCorreios = NEW System.Windows.Forms.TabPage()
+	SELF.edtValorDecl = NEW System.Windows.Forms.TextBox()
+	SELF.cbServico = NEW System.Windows.Forms.ComboBox()
+	SELF.edtResultado = NEW System.Windows.Forms.ListBox()
+	SELF.edtCepDest = NEW System.Windows.Forms.TextBox()
+	SELF.label2 = NEW System.Windows.Forms.Label()
+	SELF.edtCepOrig = NEW System.Windows.Forms.TextBox()
+	SELF.btnProcessarWSCorreio = NEW System.Windows.Forms.Button()
+	SELF.label1 = NEW System.Windows.Forms.Label()
+	SELF.tabTPS = NEW System.Windows.Forms.TabPage()
+	SELF.btnNroRec = NEW System.Windows.Forms.Button()
+	SELF.label10 = NEW System.Windows.Forms.Label()
+	SELF.label9 = NEW System.Windows.Forms.Label()
+	SELF.dgTPS = NEW System.Windows.Forms.DataGridView()
+	SELF.bindTable = NEW System.Windows.Forms.BindingSource(SELF.components)
+	SELF.dataSet1 = NEW System.@@Data.DataSet()
+	SELF.edtDataFimTPS = NEW System.Windows.Forms.DateTimePicker()
+	SELF.edtDataInicTPS = NEW System.Windows.Forms.DateTimePicker()
+	SELF.btnProcessarTPS = NEW System.Windows.Forms.Button()
+	SELF.sqlConnection1 = NEW System.@@Data.SqlClient.SqlConnection()
+	SELF.sqlDataAdapter1 = NEW System.@@Data.SqlClient.SqlDataAdapter()
+	SELF.sqlCommand1 = NEW System.@@Data.SqlClient.SqlCommand()
+	SELF.tabControl1.SuspendLayout()
+	SELF.tabTexto.SuspendLayout()
+	SELF.tabValor.SuspendLayout()
+	SELF.tabDataTable.SuspendLayout()
+	((SELF.dgDataTable TRYAS System.ComponentModel.ISupportInitialize)).BeginInit()
+	((SELF.dsDemo TRYAS System.ComponentModel.ISupportInitialize)).BeginInit()
+	SELF.tabCorreios.SuspendLayout()
+	SELF.tabTPS.SuspendLayout()
+	((SELF.dgTPS TRYAS System.ComponentModel.ISupportInitialize)).BeginInit()
+	((SELF.bindTable TRYAS System.ComponentModel.ISupportInitialize)).BeginInit()
+	((SELF.dataSet1 TRYAS System.ComponentModel.ISupportInitialize)).BeginInit()
+	SELF.SuspendLayout()
+	! 
+	! tabControl1
+	! 
+	SELF.tabControl1.Controls.Add(SELF.tabTexto)
+	SELF.tabControl1.Controls.Add(SELF.tabValor)
+	SELF.tabControl1.Controls.Add(SELF.tabDataTable)
+	SELF.tabControl1.Controls.Add(SELF.tabCorreios)
+	SELF.tabControl1.Controls.Add(SELF.tabTPS)
+	SELF.tabControl1.Location = NEW System.Drawing.Point(12, 55)
+	SELF.tabControl1.Name = 'tabControl1'
+	SELF.tabControl1.SelectedIndex = 0
+	SELF.tabControl1.Size = NEW System.Drawing.Size(701, 343)
+	SELF.tabControl1.TabIndex = 6
+	! 
+	! tabTexto
+	! 
+	SELF.tabTexto.Controls.Add(SELF.lblResultado)
+	SELF.tabTexto.Controls.Add(SELF.btnProcessarTexto)
+	SELF.tabTexto.Controls.Add(SELF.edtCodigo)
+	SELF.tabTexto.Controls.Add(SELF.label8)
+	SELF.tabTexto.Location = NEW System.Drawing.Point(4, 22)
+	SELF.tabTexto.Name = 'tabTexto'
+	SELF.tabTexto.Padding = NEW System.Windows.Forms.Padding(3)
+	SELF.tabTexto.Size = NEW System.Drawing.Size(693, 317)
+	SELF.tabTexto.TabIndex = 1
+	SELF.tabTexto.Text = 'Texto'
+	SELF.tabTexto.UseVisualStyleBackColor = true
+	! 
+	! lblResultado
+	! 
+	SELF.lblResultado.Location = NEW System.Drawing.Point(39, 100)
+	SELF.lblResultado.Name = 'lblResultado'
+	SELF.lblResultado.Size = NEW System.Drawing.Size(320, 23)
+	SELF.lblResultado.TabIndex = 3
+	! 
+	! btnProcessarTexto
+	! 
+	SELF.btnProcessarTexto.Location = NEW System.Drawing.Point(315, 39)
+	SELF.btnProcessarTexto.Name = 'btnProcessarTexto'
+	SELF.btnProcessarTexto.Size = NEW System.Drawing.Size(75, 23)
+	SELF.btnProcessarTexto.TabIndex = 2
+	SELF.btnProcessarTexto.Text = 'Processar'
+	SELF.btnProcessarTexto.UseVisualStyleBackColor = true
+	SELF.btnProcessarTexto.Click += SELF.BtnProcessarTexto_Click
+	! 
+	! edtCodigo
+	! 
+	SELF.edtCodigo.Location = NEW System.Drawing.Point(67, 39)
+	SELF.edtCodigo.Name = 'edtCodigo'
+	SELF.edtCodigo.Size = NEW System.Drawing.Size(184, 20)
+	SELF.edtCodigo.TabIndex = 1
+	! 
+	! label8
+	! 
+	SELF.label8.Location = NEW System.Drawing.Point(6, 42)
+	SELF.label8.Name = 'label8'
+	SELF.label8.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label8.TabIndex = 0
+	SELF.label8.Text = 'Código'
+	! 
+	! tabValor
+	! 
+	SELF.tabValor.Controls.Add(SELF.label7)
+	SELF.tabValor.Controls.Add(SELF.edtVlrResultado)
+	SELF.tabValor.Controls.Add(SELF.btnProcessarValor)
+	SELF.tabValor.Controls.Add(SELF.label6)
+	SELF.tabValor.Controls.Add(SELF.label5)
+	SELF.tabValor.Controls.Add(SELF.edtValorFinal)
+	SELF.tabValor.Controls.Add(SELF.edtValorInic)
+	SELF.tabValor.Location = NEW System.Drawing.Point(4, 22)
+	SELF.tabValor.Name = 'tabValor'
+	SELF.tabValor.Size = NEW System.Drawing.Size(693, 317)
+	SELF.tabValor.TabIndex = 2
+	SELF.tabValor.Text = 'Valor'
+	SELF.tabValor.UseVisualStyleBackColor = true
+	! 
+	! label7
+	! 
+	SELF.label7.Location = NEW System.Drawing.Point(17, 139)
+	SELF.label7.Name = 'label7'
+	SELF.label7.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label7.TabIndex = 6
+	SELF.label7.Text = 'Resultado'
+	! 
+	! edtVlrResultado
+	! 
+	SELF.edtVlrResultado.Location = NEW System.Drawing.Point(134, 136)
+	SELF.edtVlrResultado.Name = 'edtVlrResultado'
+	SELF.edtVlrResultado.Size = NEW System.Drawing.Size(100, 20)
+	SELF.edtVlrResultado.TabIndex = 5
+	! 
+	! btnProcessarValor
+	! 
+	SELF.btnProcessarValor.Location = NEW System.Drawing.Point(268, 71)
+	SELF.btnProcessarValor.Name = 'btnProcessarValor'
+	SELF.btnProcessarValor.Size = NEW System.Drawing.Size(75, 23)
+	SELF.btnProcessarValor.TabIndex = 4
+	SELF.btnProcessarValor.Text = 'Processar'
+	SELF.btnProcessarValor.UseVisualStyleBackColor = true
+	SELF.btnProcessarValor.Click += SELF.BtnProcessarValor_Click
+	! 
+	! label6
+	! 
+	SELF.label6.Location = NEW System.Drawing.Point(17, 71)
+	SELF.label6.Name = 'label6'
+	SELF.label6.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label6.TabIndex = 3
+	SELF.label6.Text = 'Final'
+	! 
+	! label5
+	! 
+	SELF.label5.Location = NEW System.Drawing.Point(17, 32)
+	SELF.label5.Name = 'label5'
+	SELF.label5.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label5.TabIndex = 2
+	SELF.label5.Text = 'Inicial'
+	! 
+	! edtValorFinal
+	! 
+	SELF.edtValorFinal.Location = NEW System.Drawing.Point(134, 68)
+	SELF.edtValorFinal.Name = 'edtValorFinal'
+	SELF.edtValorFinal.Size = NEW System.Drawing.Size(100, 20)
+	SELF.edtValorFinal.TabIndex = 1
+	! 
+	! edtValorInic
+	! 
+	SELF.edtValorInic.Location = NEW System.Drawing.Point(134, 29)
+	SELF.edtValorInic.Name = 'edtValorInic'
+	SELF.edtValorInic.Size = NEW System.Drawing.Size(100, 20)
+	SELF.edtValorInic.TabIndex = 0
+	! 
+	! tabDataTable
+	! 
+	SELF.tabDataTable.Controls.Add(SELF.btnProcessarDataTable)
+	SELF.tabDataTable.Controls.Add(SELF.edtDataFinal)
+	SELF.tabDataTable.Controls.Add(SELF.label4)
+	SELF.tabDataTable.Controls.Add(SELF.label3)
+	SELF.tabDataTable.Controls.Add(SELF.edtDataInicial)
+	SELF.tabDataTable.Controls.Add(SELF.dgDataTable)
+	SELF.tabDataTable.Location = NEW System.Drawing.Point(4, 22)
+	SELF.tabDataTable.Name = 'tabDataTable'
+	SELF.tabDataTable.Size = NEW System.Drawing.Size(693, 317)
+	SELF.tabDataTable.TabIndex = 3
+	SELF.tabDataTable.Text = 'DataTable'
+	SELF.tabDataTable.UseVisualStyleBackColor = true
+	! 
+	! btnProcessarDataTable
+	! 
+	SELF.btnProcessarDataTable.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.btnProcessarDataTable.Location = NEW System.Drawing.Point(490, 22)
+	SELF.btnProcessarDataTable.Name = 'btnProcessarDataTable'
+	SELF.btnProcessarDataTable.Size = NEW System.Drawing.Size(75, 23)
+	SELF.btnProcessarDataTable.TabIndex = 5
+	SELF.btnProcessarDataTable.Text = 'Processar'
+	SELF.btnProcessarDataTable.UseVisualStyleBackColor = true
+	SELF.btnProcessarDataTable.Click += SELF.btnProcessarDataTable_Click
+	! 
+	! edtDataFinal
+	! 
+	SELF.edtDataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short
+	SELF.edtDataFinal.Location = NEW System.Drawing.Point(320, 23)
+	SELF.edtDataFinal.Name = 'edtDataFinal'
+	SELF.edtDataFinal.Size = NEW System.Drawing.Size(102, 20)
+	SELF.edtDataFinal.TabIndex = 4
+	! 
+	! label4
+	! 
+	SELF.label4.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label4.Location = NEW System.Drawing.Point(246, 23)
+	SELF.label4.Name = 'label4'
+	SELF.label4.Size = NEW System.Drawing.Size(78, 20)
+	SELF.label4.TabIndex = 3
+	SELF.label4.Text = 'Data Final'
+	SELF.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! label3
+	! 
+	SELF.label3.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label3.Location = NEW System.Drawing.Point(41, 23)
+	SELF.label3.Name = 'label3'
+	SELF.label3.Size = NEW System.Drawing.Size(78, 20)
+	SELF.label3.TabIndex = 2
+	SELF.label3.Text = 'Data Inicial'
+	SELF.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! edtDataInicial
+	! 
+	SELF.edtDataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short
+	SELF.edtDataInicial.Location = NEW System.Drawing.Point(125, 23)
+	SELF.edtDataInicial.Name = 'edtDataInicial'
+	SELF.edtDataInicial.Size = NEW System.Drawing.Size(102, 20)
+	SELF.edtDataInicial.TabIndex = 1
+	! 
+	! dgDataTable
+	! 
+	SELF.dgDataTable.DataMember = ''
+	SELF.dgDataTable.DataSource = SELF.dsDemo
+	SELF.dgDataTable.HeaderForeColor = System.Drawing.SystemColors.ControlText
+	SELF.dgDataTable.Location = NEW System.Drawing.Point(23, 58)
+	SELF.dgDataTable.Name = 'dgDataTable'
+	SELF.dgDataTable.Size = NEW System.Drawing.Size(640, 239)
+	SELF.dgDataTable.TabIndex = 0
+	! 
+	! dsDemo
+	! 
+	SELF.dsDemo.DataSetName = 'NewDataSet'
+	! 
+	! tabCorreios
+	! 
+	SELF.tabCorreios.Controls.Add(SELF.edtValorDecl)
+	SELF.tabCorreios.Controls.Add(SELF.cbServico)
+	SELF.tabCorreios.Controls.Add(SELF.edtResultado)
+	SELF.tabCorreios.Controls.Add(SELF.edtCepDest)
+	SELF.tabCorreios.Controls.Add(SELF.label2)
+	SELF.tabCorreios.Controls.Add(SELF.edtCepOrig)
+	SELF.tabCorreios.Controls.Add(SELF.btnProcessarWSCorreio)
+	SELF.tabCorreios.Controls.Add(SELF.label1)
+	SELF.tabCorreios.Location = NEW System.Drawing.Point(4, 22)
+	SELF.tabCorreios.Name = 'tabCorreios'
+	SELF.tabCorreios.Padding = NEW System.Windows.Forms.Padding(3)
+	SELF.tabCorreios.Size = NEW System.Drawing.Size(693, 317)
+	SELF.tabCorreios.TabIndex = 0
+	SELF.tabCorreios.Text = 'ws Correios'
+	SELF.tabCorreios.UseVisualStyleBackColor = true
+	! 
+	! edtValorDecl
+	! 
+	SELF.edtValorDecl.Location = NEW System.Drawing.Point(236, 47)
+	SELF.edtValorDecl.Name = 'edtValorDecl'
+	SELF.edtValorDecl.Size = NEW System.Drawing.Size(146, 20)
+	SELF.edtValorDecl.TabIndex = 14
+	SELF.edtValorDecl.Text = '0'
+	! 
+	! cbServico
+	! 
+	SELF.cbServico.FormattingEnabled = true
+	SELF.cbServico.Items.AddRange(NEW System.Object[] {'40010 - SEDEX Varejo', '40045 - SEDEX a Cobrar Varejo', '40215 - SEDEX 10 Varejo', '40290 - SEDEX Hoje Varejo', '41106 - PAC Varejo'})
+	SELF.cbServico.Location = NEW System.Drawing.Point(236, 21)
+	SELF.cbServico.Name = 'cbServico'
+	SELF.cbServico.Size = NEW System.Drawing.Size(146, 21)
+	SELF.cbServico.TabIndex = 13
+	SELF.cbServico.SelectedIndexChanged += SELF.CbServico_SelectedIndexChanged
+	! 
+	! edtResultado
+	! 
+	SELF.edtResultado.FormattingEnabled = true
+	SELF.edtResultado.Location = NEW System.Drawing.Point(13, 71)
+	SELF.edtResultado.Name = 'edtResultado'
+	SELF.edtResultado.Size = NEW System.Drawing.Size(658, 238)
+	SELF.edtResultado.TabIndex = 12
+	! 
+	! edtCepDest
+	! 
+	SELF.edtCepDest.Location = NEW System.Drawing.Point(95, 45)
+	SELF.edtCepDest.Name = 'edtCepDest'
+	SELF.edtCepDest.Size = NEW System.Drawing.Size(100, 20)
+	SELF.edtCepDest.TabIndex = 11
+	! 
+	! label2
+	! 
+	SELF.label2.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label2.Location = NEW System.Drawing.Point(13, 45)
+	SELF.label2.Name = 'label2'
+	SELF.label2.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label2.TabIndex = 10
+	SELF.label2.Text = 'CEP Destino'
+	SELF.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! edtCepOrig
+	! 
+	SELF.edtCepOrig.Location = NEW System.Drawing.Point(95, 21)
+	SELF.edtCepOrig.Name = 'edtCepOrig'
+	SELF.edtCepOrig.Size = NEW System.Drawing.Size(100, 20)
+	SELF.edtCepOrig.TabIndex = 9
+	! 
+	! btnProcessarWSCorreio
+	! 
+	SELF.btnProcessarWSCorreio.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.btnProcessarWSCorreio.Location = NEW System.Drawing.Point(552, 45)
+	SELF.btnProcessarWSCorreio.Name = 'btnProcessarWSCorreio'
+	SELF.btnProcessarWSCorreio.Size = NEW System.Drawing.Size(75, 23)
+	SELF.btnProcessarWSCorreio.TabIndex = 8
+	SELF.btnProcessarWSCorreio.Text = 'Processar'
+	SELF.btnProcessarWSCorreio.UseVisualStyleBackColor = true
+	SELF.btnProcessarWSCorreio.Click += SELF.Button1_Click
+	! 
+	! label1
+	! 
+	SELF.label1.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label1.Location = NEW System.Drawing.Point(13, 18)
+	SELF.label1.Name = 'label1'
+	SELF.label1.Size = NEW System.Drawing.Size(100, 23)
+	SELF.label1.TabIndex = 7
+	SELF.label1.Text = 'CEP Origem'
+	SELF.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! tabTPS
+	! 
+	SELF.tabTPS.Controls.Add(SELF.btnNroRec)
+	SELF.tabTPS.Controls.Add(SELF.label10)
+	SELF.tabTPS.Controls.Add(SELF.label9)
+	SELF.tabTPS.Controls.Add(SELF.dgTPS)
+	SELF.tabTPS.Controls.Add(SELF.edtDataFimTPS)
+	SELF.tabTPS.Controls.Add(SELF.edtDataInicTPS)
+	SELF.tabTPS.Controls.Add(SELF.btnProcessarTPS)
+	SELF.tabTPS.Location = NEW System.Drawing.Point(4, 22)
+	SELF.tabTPS.Name = 'tabTPS'
+	SELF.tabTPS.Size = NEW System.Drawing.Size(693, 317)
+	SELF.tabTPS.TabIndex = 4
+	SELF.tabTPS.Text = 'Table TPS'
+	SELF.tabTPS.UseVisualStyleBackColor = true
+	! 
+	! btnNroRec
+	! 
+	SELF.btnNroRec.Location = NEW System.Drawing.Point(418, 52)
+	SELF.btnNroRec.Name = 'btnNroRec'
+	SELF.btnNroRec.Size = NEW System.Drawing.Size(114, 23)
+	SELF.btnNroRec.TabIndex = 6
+	SELF.btnNroRec.Text = 'Num. Registros'
+	SELF.btnNroRec.UseVisualStyleBackColor = true
+	SELF.btnNroRec.Click += SELF.BtnNroRec_Click
+	! 
+	! label10
+	! 
+	SELF.label10.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label10.Location = NEW System.Drawing.Point(209, 24)
+	SELF.label10.Name = 'label10'
+	SELF.label10.Size = NEW System.Drawing.Size(76, 23)
+	SELF.label10.TabIndex = 5
+	SELF.label10.Text = 'Data Inicial'
+	SELF.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! label9
+	! 
+	SELF.label9.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 8.25, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label9.Location = NEW System.Drawing.Point(209, 50)
+	SELF.label9.Name = 'label9'
+	SELF.label9.Size = NEW System.Drawing.Size(76, 23)
+	SELF.label9.TabIndex = 4
+	SELF.label9.Text = 'Data Final'
+	SELF.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+	! 
+	! dgTPS
+	! 
+	SELF.dgTPS.AutoGenerateColumns = false
+	SELF.dgTPS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+	SELF.dgTPS.DataSource = SELF.bindTable
+	SELF.dgTPS.Location = NEW System.Drawing.Point(15, 81)
+	SELF.dgTPS.Name = 'dgTPS'
+	SELF.dgTPS.Size = NEW System.Drawing.Size(648, 202)
+	SELF.dgTPS.TabIndex = 3
+	! 
+	! bindTable
+	! 
+	SELF.bindTable.DataSource = SELF.dataSet1
+	SELF.bindTable.Position = 0
+	! 
+	! dataSet1
+	! 
+	SELF.dataSet1.DataSetName = 'NewDataSet'
+	! 
+	! edtDataFimTPS
+	! 
+	SELF.edtDataFimTPS.Format = System.Windows.Forms.DateTimePickerFormat.Short
+	SELF.edtDataFimTPS.Location = NEW System.Drawing.Point(291, 52)
+	SELF.edtDataFimTPS.Name = 'edtDataFimTPS'
+	SELF.edtDataFimTPS.Size = NEW System.Drawing.Size(99, 20)
+	SELF.edtDataFimTPS.TabIndex = 2
+	! 
+	! edtDataInicTPS
+	! 
+	SELF.edtDataInicTPS.Format = System.Windows.Forms.DateTimePickerFormat.Short
+	SELF.edtDataInicTPS.Location = NEW System.Drawing.Point(291, 26)
+	SELF.edtDataInicTPS.Name = 'edtDataInicTPS'
+	SELF.edtDataInicTPS.Size = NEW System.Drawing.Size(99, 20)
+	SELF.edtDataInicTPS.TabIndex = 1
+	! 
+	! btnProcessarTPS
+	! 
+	SELF.btnProcessarTPS.Location = NEW System.Drawing.Point(418, 24)
+	SELF.btnProcessarTPS.Name = 'btnProcessarTPS'
+	SELF.btnProcessarTPS.Size = NEW System.Drawing.Size(114, 23)
+	SELF.btnProcessarTPS.TabIndex = 0
+	SELF.btnProcessarTPS.Text = 'Processar'
+	SELF.btnProcessarTPS.UseVisualStyleBackColor = true
+	SELF.btnProcessarTPS.Click += SELF.BtnProcessarTPS_Click
+	! 
+	! sqlConnection1
+	! 
+	SELF.sqlConnection1.ConnectionString = 'Data Source=noteaspire\sql_local;Initial Catalog=TesteDB;Integrated Security=TRUE' & ''
+	SELF.sqlConnection1.FireInfoMessageEventOnUserErrors = false
+	! 
+	! sqlDataAdapter1
+	! 
+	SELF.sqlDataAdapter1.SelectCommand = SELF.sqlCommand1
+	! 
+	! sqlCommand1
+	! 
+	SELF.sqlCommand1.CommandText = 'Select * from Painelista'
+	SELF.sqlCommand1.Connection = SELF.sqlConnection1
+	! 
+	! MainForm
+	! 
+	SELF.AutoScaleDimensions = NEW System.Drawing.SizeF(6, 13)
+	SELF.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+	SELF.ClientSize = NEW System.Drawing.Size(725, 410)
+	SELF.Controls.Add(SELF.tabControl1)
+	SELF.Name = 'MainForm'
+	SELF.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+	SELF.Text = 'DevCon 2013 - Web Service'
+	SELF.Load += SELF.MainForm_Load
+	SELF.tabControl1.ResumeLayout(false)
+	SELF.tabTexto.ResumeLayout(false)
+	SELF.tabTexto.PerformLayout()
+	SELF.tabValor.ResumeLayout(false)
+	SELF.tabValor.PerformLayout()
+	SELF.tabDataTable.ResumeLayout(false)
+	((SELF.dgDataTable TRYAS System.ComponentModel.ISupportInitialize)).EndInit()
+	((SELF.dsDemo TRYAS System.ComponentModel.ISupportInitialize)).EndInit()
+	SELF.tabCorreios.ResumeLayout(false)
+	SELF.tabCorreios.PerformLayout()
+	SELF.tabTPS.ResumeLayout(false)
+	((SELF.dgTPS TRYAS System.ComponentModel.ISupportInitialize)).EndInit()
+	((SELF.bindTable TRYAS System.ComponentModel.ISupportInitialize)).EndInit()
+	((SELF.dataSet1 TRYAS System.ComponentModel.ISupportInitialize)).EndInit()
+	SELF.ResumeLayout(false)
+

@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.barcodesoft.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.barcodesoft.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BarCodeSoft Webservice for Online BarCode Generation</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.barcodesoft.com/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:element name="Code39">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="BcsImageFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="BMP" />
+          <s:enumeration value="JPG" />
+          <s:enumeration value="PNG" />
+          <s:enumeration value="WMF" />
+          <s:enumeration value="TIFF" />
+          <s:enumeration value="GIF" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="BcsOrientation">
+        <s:restriction base="s:string">
+          <s:enumeration value="Original" />
+          <s:enumeration value="Rotate90" />
+          <s:enumeration value="Rotate180" />
+          <s:enumeration value="Rotate270" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="Code39Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code39Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code39Ext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code39ExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code39ExtResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Codabar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CodabarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodabarResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="I25">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="I25Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="I25Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code93">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code93Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code93Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128A">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128AResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code128AResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128B">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128BResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code128BResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128C">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code128CResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code128CResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GS1128">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GS1128Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GS1128Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code25">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code25Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code25Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code11">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Code11Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code11Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Telepen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TelepenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TelepenResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowHumanReadable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowCheckDigit" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MSIResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPCA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPCAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPCAResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPCE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPCEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPCEResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EAN13">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EAN13Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EAN13Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EAN8">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EAN8Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EAN8Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BOOKLAND">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAddon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BOOKLANDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BOOKLANDResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Datamatrix">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DataMatrixFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DataMatrixFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="AutoSelect" />
+          <s:enumeration value="_10x10" />
+          <s:enumeration value="_12x12" />
+          <s:enumeration value="_14x14" />
+          <s:enumeration value="_16x16" />
+          <s:enumeration value="_18x18" />
+          <s:enumeration value="_20x20" />
+          <s:enumeration value="_22x22" />
+          <s:enumeration value="_24x24" />
+          <s:enumeration value="_26x26" />
+          <s:enumeration value="_32x32" />
+          <s:enumeration value="_36x36" />
+          <s:enumeration value="_40x40" />
+          <s:enumeration value="_44x44" />
+          <s:enumeration value="_48x48" />
+          <s:enumeration value="_52x52" />
+          <s:enumeration value="_64x64" />
+          <s:enumeration value="_72x72" />
+          <s:enumeration value="_80x80" />
+          <s:enumeration value="_88x88" />
+          <s:enumeration value="_96x96" />
+          <s:enumeration value="_104x104" />
+          <s:enumeration value="_120x120" />
+          <s:enumeration value="_134x134" />
+          <s:enumeration value="_144x144" />
+          <s:enumeration value="_8x18" />
+          <s:enumeration value="_8x32" />
+          <s:enumeration value="_12x26" />
+          <s:enumeration value="_12x36" />
+          <s:enumeration value="_16x36" />
+          <s:enumeration value="_16x48" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DatamatrixResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DatamatrixResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QRCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EccLevel" type="tns:QrcodeErrorLvl" />
+            <s:element minOccurs="1" maxOccurs="1" name="QRCodeFormat" type="tns:QrcodeFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="QrcodeErrorLvl">
+        <s:restriction base="s:string">
+          <s:enumeration value="L07" />
+          <s:enumeration value="M15" />
+          <s:enumeration value="Q25" />
+          <s:enumeration value="H30" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="QrcodeFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="AutoSelect" />
+          <s:enumeration value="_21x21" />
+          <s:enumeration value="_25x25" />
+          <s:enumeration value="_29x29" />
+          <s:enumeration value="_33x33" />
+          <s:enumeration value="_37x37" />
+          <s:enumeration value="_41x41" />
+          <s:enumeration value="_45x45" />
+          <s:enumeration value="_49x49" />
+          <s:enumeration value="_53x53" />
+          <s:enumeration value="_57x57" />
+          <s:enumeration value="_61x61" />
+          <s:enumeration value="_65x65" />
+          <s:enumeration value="_69x69" />
+          <s:enumeration value="_73x73" />
+          <s:enumeration value="_77x77" />
+          <s:enumeration value="_81x81" />
+          <s:enumeration value="_85x85" />
+          <s:enumeration value="_89x89" />
+          <s:enumeration value="_93x93" />
+          <s:enumeration value="_97x97" />
+          <s:enumeration value="_101x101" />
+          <s:enumeration value="_105x105" />
+          <s:enumeration value="_109x109" />
+          <s:enumeration value="_113x113" />
+          <s:enumeration value="_117x117" />
+          <s:enumeration value="_121x121" />
+          <s:enumeration value="_125x125" />
+          <s:enumeration value="_129x129" />
+          <s:enumeration value="_133x133" />
+          <s:enumeration value="_137x137" />
+          <s:enumeration value="_141x141" />
+          <s:enumeration value="_145x145" />
+          <s:enumeration value="_149x149" />
+          <s:enumeration value="_153x153" />
+          <s:enumeration value="_157x157" />
+          <s:enumeration value="_161x161" />
+          <s:enumeration value="_165x165" />
+          <s:enumeration value="_169x169" />
+          <s:enumeration value="_173x173" />
+          <s:enumeration value="_177x177" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="QRCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QRCodeResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Pdf417">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxRow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FixedColumn" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Security" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompactMode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Truncated" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Pdf417Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pdf417Result" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Aztec">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textToEncode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageFormat" type="tns:BcsImageFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="Orientation" type="tns:BcsOrientation" />
+            <s:element minOccurs="1" maxOccurs="1" name="Resolution" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nFormat" type="tns:AztecTargetSize" />
+            <s:element minOccurs="1" maxOccurs="1" name="ErrorLevel" type="tns:AztecErrorLevel" />
+            <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="AztecTargetSize">
+        <s:restriction base="s:string">
+          <s:enumeration value="AutoSelect" />
+          <s:enumeration value="_15x15Compact" />
+          <s:enumeration value="_19x19" />
+          <s:enumeration value="_19x19Compact" />
+          <s:enumeration value="_23x23" />
+          <s:enumeration value="_23x23Compact" />
+          <s:enumeration value="_27x27" />
+          <s:enumeration value="_27x27Compact" />
+          <s:enumeration value="_31x31" />
+          <s:enumeration value="_37x37" />
+          <s:enumeration value="_41x41" />
+          <s:enumeration value="_45x45" />
+          <s:enumeration value="_49x49" />
+          <s:enumeration value="_53x53" />
+          <s:enumeration value="_57x57" />
+          <s:enumeration value="_61x61" />
+          <s:enumeration value="_67x67" />
+          <s:enumeration value="_71x71" />
+          <s:enumeration value="_75x75" />
+          <s:enumeration value="_79x79" />
+          <s:enumeration value="_83x83" />
+          <s:enumeration value="_87x87" />
+          <s:enumeration value="_91x91" />
+          <s:enumeration value="_95x95" />
+          <s:enumeration value="_101x101" />
+          <s:enumeration value="_105x105" />
+          <s:enumeration value="_109x109" />
+          <s:enumeration value="_113x113" />
+          <s:enumeration value="_117x117" />
+          <s:enumeration value="_121x121" />
+          <s:enumeration value="_125x125" />
+          <s:enumeration value="_131x131" />
+          <s:enumeration value="_135x135" />
+          <s:enumeration value="_139x139" />
+          <s:enumeration value="_143x143" />
+          <s:enumeration value="_147x147" />
+          <s:enumeration value="_151x151" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AztecErrorLevel">
+        <s:restriction base="s:string">
+          <s:enumeration value="AutoSelect" />
+          <s:enumeration value="AztecECL5" />
+          <s:enumeration value="AztecECL10" />
+          <s:enumeration value="AztecECL15" />
+          <s:enumeration value="AztecECL20" />
+          <s:enumeration value="AztecECL23" />
+          <s:enumeration value="AztecECL25" />
+          <s:enumeration value="AztecECL30" />
+          <s:enumeration value="AztecECL35" />
+          <s:enumeration value="AztecECL40" />
+          <s:enumeration value="AztecECL45" />
+          <s:enumeration value="AztecECL50" />
+          <s:enumeration value="AztecECL55" />
+          <s:enumeration value="AztecECL60" />
+          <s:enumeration value="AztecECL65" />
+          <s:enumeration value="AztecECL70" />
+          <s:enumeration value="AztecECL75" />
+          <s:enumeration value="AztecECL80" />
+          <s:enumeration value="AztecECL85" />
+          <s:enumeration value="AztecECL90" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AztecResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AztecResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Code39SoapIn">
+    <wsdl:part name="parameters" element="tns:Code39" />
+  </wsdl:message>
+  <wsdl:message name="Code39SoapOut">
+    <wsdl:part name="parameters" element="tns:Code39Response" />
+  </wsdl:message>
+  <wsdl:message name="Code39ExtSoapIn">
+    <wsdl:part name="parameters" element="tns:Code39Ext" />
+  </wsdl:message>
+  <wsdl:message name="Code39ExtSoapOut">
+    <wsdl:part name="parameters" element="tns:Code39ExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="CodabarSoapIn">
+    <wsdl:part name="parameters" element="tns:Codabar" />
+  </wsdl:message>
+  <wsdl:message name="CodabarSoapOut">
+    <wsdl:part name="parameters" element="tns:CodabarResponse" />
+  </wsdl:message>
+  <wsdl:message name="I25SoapIn">
+    <wsdl:part name="parameters" element="tns:I25" />
+  </wsdl:message>
+  <wsdl:message name="I25SoapOut">
+    <wsdl:part name="parameters" element="tns:I25Response" />
+  </wsdl:message>
+  <wsdl:message name="Code93SoapIn">
+    <wsdl:part name="parameters" element="tns:Code93" />
+  </wsdl:message>
+  <wsdl:message name="Code93SoapOut">
+    <wsdl:part name="parameters" element="tns:Code93Response" />
+  </wsdl:message>
+  <wsdl:message name="Code128ASoapIn">
+    <wsdl:part name="parameters" element="tns:Code128A" />
+  </wsdl:message>
+  <wsdl:message name="Code128ASoapOut">
+    <wsdl:part name="parameters" element="tns:Code128AResponse" />
+  </wsdl:message>
+  <wsdl:message name="Code128BSoapIn">
+    <wsdl:part name="parameters" element="tns:Code128B" />
+  </wsdl:message>
+  <wsdl:message name="Code128BSoapOut">
+    <wsdl:part name="parameters" element="tns:Code128BResponse" />
+  </wsdl:message>
+  <wsdl:message name="Code128CSoapIn">
+    <wsdl:part name="parameters" element="tns:Code128C" />
+  </wsdl:message>
+  <wsdl:message name="Code128CSoapOut">
+    <wsdl:part name="parameters" element="tns:Code128CResponse" />
+  </wsdl:message>
+  <wsdl:message name="GS1128SoapIn">
+    <wsdl:part name="parameters" element="tns:GS1128" />
+  </wsdl:message>
+  <wsdl:message name="GS1128SoapOut">
+    <wsdl:part name="parameters" element="tns:GS1128Response" />
+  </wsdl:message>
+  <wsdl:message name="Code25SoapIn">
+    <wsdl:part name="parameters" element="tns:Code25" />
+  </wsdl:message>
+  <wsdl:message name="Code25SoapOut">
+    <wsdl:part name="parameters" element="tns:Code25Response" />
+  </wsdl:message>
+  <wsdl:message name="Code11SoapIn">
+    <wsdl:part name="parameters" element="tns:Code11" />
+  </wsdl:message>
+  <wsdl:message name="Code11SoapOut">
+    <wsdl:part name="parameters" element="tns:Code11Response" />
+  </wsdl:message>
+  <wsdl:message name="TelepenSoapIn">
+    <wsdl:part name="parameters" element="tns:Telepen" />
+  </wsdl:message>
+  <wsdl:message name="TelepenSoapOut">
+    <wsdl:part name="parameters" element="tns:TelepenResponse" />
+  </wsdl:message>
+  <wsdl:message name="MSISoapIn">
+    <wsdl:part name="parameters" element="tns:MSI" />
+  </wsdl:message>
+  <wsdl:message name="MSISoapOut">
+    <wsdl:part name="parameters" element="tns:MSIResponse" />
+  </wsdl:message>
+  <wsdl:message name="UPCASoapIn">
+    <wsdl:part name="parameters" element="tns:UPCA" />
+  </wsdl:message>
+  <wsdl:message name="UPCASoapOut">
+    <wsdl:part name="parameters" element="tns:UPCAResponse" />
+  </wsdl:message>
+  <wsdl:message name="UPCESoapIn">
+    <wsdl:part name="parameters" element="tns:UPCE" />
+  </wsdl:message>
+  <wsdl:message name="UPCESoapOut">
+    <wsdl:part name="parameters" element="tns:UPCEResponse" />
+  </wsdl:message>
+  <wsdl:message name="EAN13SoapIn">
+    <wsdl:part name="parameters" element="tns:EAN13" />
+  </wsdl:message>
+  <wsdl:message name="EAN13SoapOut">
+    <wsdl:part name="parameters" element="tns:EAN13Response" />
+  </wsdl:message>
+  <wsdl:message name="EAN8SoapIn">
+    <wsdl:part name="parameters" element="tns:EAN8" />
+  </wsdl:message>
+  <wsdl:message name="EAN8SoapOut">
+    <wsdl:part name="parameters" element="tns:EAN8Response" />
+  </wsdl:message>
+  <wsdl:message name="BOOKLANDSoapIn">
+    <wsdl:part name="parameters" element="tns:BOOKLAND" />
+  </wsdl:message>
+  <wsdl:message name="BOOKLANDSoapOut">
+    <wsdl:part name="parameters" element="tns:BOOKLANDResponse" />
+  </wsdl:message>
+  <wsdl:message name="DatamatrixSoapIn">
+    <wsdl:part name="parameters" element="tns:Datamatrix" />
+  </wsdl:message>
+  <wsdl:message name="DatamatrixSoapOut">
+    <wsdl:part name="parameters" element="tns:DatamatrixResponse" />
+  </wsdl:message>
+  <wsdl:message name="QRCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:QRCode" />
+  </wsdl:message>
+  <wsdl:message name="QRCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:QRCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Pdf417SoapIn">
+    <wsdl:part name="parameters" element="tns:Pdf417" />
+  </wsdl:message>
+  <wsdl:message name="Pdf417SoapOut">
+    <wsdl:part name="parameters" element="tns:Pdf417Response" />
+  </wsdl:message>
+  <wsdl:message name="AztecSoapIn">
+    <wsdl:part name="parameters" element="tns:Aztec" />
+  </wsdl:message>
+  <wsdl:message name="AztecSoapOut">
+    <wsdl:part name="parameters" element="tns:AztecResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BarCodeWebServiceSoap">
+    <wsdl:operation name="Code39">
+      <wsdl:input message="tns:Code39SoapIn" />
+      <wsdl:output message="tns:Code39SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code39Ext">
+      <wsdl:input message="tns:Code39ExtSoapIn" />
+      <wsdl:output message="tns:Code39ExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Codabar">
+      <wsdl:input message="tns:CodabarSoapIn" />
+      <wsdl:output message="tns:CodabarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="I25">
+      <wsdl:input message="tns:I25SoapIn" />
+      <wsdl:output message="tns:I25SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code93">
+      <wsdl:input message="tns:Code93SoapIn" />
+      <wsdl:output message="tns:Code93SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code128A">
+      <wsdl:input message="tns:Code128ASoapIn" />
+      <wsdl:output message="tns:Code128ASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code128B">
+      <wsdl:input message="tns:Code128BSoapIn" />
+      <wsdl:output message="tns:Code128BSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code128C">
+      <wsdl:input message="tns:Code128CSoapIn" />
+      <wsdl:output message="tns:Code128CSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GS1128">
+      <wsdl:input message="tns:GS1128SoapIn" />
+      <wsdl:output message="tns:GS1128SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code25">
+      <wsdl:input message="tns:Code25SoapIn" />
+      <wsdl:output message="tns:Code25SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Code11">
+      <wsdl:input message="tns:Code11SoapIn" />
+      <wsdl:output message="tns:Code11SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Telepen">
+      <wsdl:input message="tns:TelepenSoapIn" />
+      <wsdl:output message="tns:TelepenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSI">
+      <wsdl:input message="tns:MSISoapIn" />
+      <wsdl:output message="tns:MSISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UPCA">
+      <wsdl:input message="tns:UPCASoapIn" />
+      <wsdl:output message="tns:UPCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UPCE">
+      <wsdl:input message="tns:UPCESoapIn" />
+      <wsdl:output message="tns:UPCESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EAN13">
+      <wsdl:input message="tns:EAN13SoapIn" />
+      <wsdl:output message="tns:EAN13SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EAN8">
+      <wsdl:input message="tns:EAN8SoapIn" />
+      <wsdl:output message="tns:EAN8SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BOOKLAND">
+      <wsdl:input message="tns:BOOKLANDSoapIn" />
+      <wsdl:output message="tns:BOOKLANDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Datamatrix">
+      <wsdl:input message="tns:DatamatrixSoapIn" />
+      <wsdl:output message="tns:DatamatrixSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QRCode">
+      <wsdl:input message="tns:QRCodeSoapIn" />
+      <wsdl:output message="tns:QRCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Pdf417">
+      <wsdl:input message="tns:Pdf417SoapIn" />
+      <wsdl:output message="tns:Pdf417SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Aztec">
+      <wsdl:input message="tns:AztecSoapIn" />
+      <wsdl:output message="tns:AztecSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BarCodeWebServiceSoap" type="tns:BarCodeWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Code39">
+      <soap:operation soapAction="http://www.barcodesoft.com/code39.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code39Ext">
+      <soap:operation soapAction="http://www.barcodesoft.com/code39ext.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Codabar">
+      <soap:operation soapAction="http://www.barcodesoft.com/codabar.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="I25">
+      <soap:operation soapAction="http://www.barcodesoft.com/i25.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code93">
+      <soap:operation soapAction="http://www.barcodesoft.com/code93.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128A">
+      <soap:operation soapAction="http://www.barcodesoft.com/code128a.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128B">
+      <soap:operation soapAction="http://www.barcodesoft.com/code128b.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128C">
+      <soap:operation soapAction="http://www.barcodesoft.com/code128c.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GS1128">
+      <soap:operation soapAction="http://www.barcodesoft.com/gs1128.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code25">
+      <soap:operation soapAction="http://www.barcodesoft.com/code25.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code11">
+      <soap:operation soapAction="http://www.barcodesoft.com/code11.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Telepen">
+      <soap:operation soapAction="http://www.barcodesoft.com/telepen.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSI">
+      <soap:operation soapAction="http://www.barcodesoft.com/msi.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPCA">
+      <soap:operation soapAction="http://www.barcodesoft.com/upca.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPCE">
+      <soap:operation soapAction="http://www.barcodesoft.com/upce.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EAN13">
+      <soap:operation soapAction="http://www.barcodesoft.com/ean13.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EAN8">
+      <soap:operation soapAction="http://www.barcodesoft.com/ean8.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BOOKLAND">
+      <soap:operation soapAction="http://www.barcodesoft.com/bookland.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Datamatrix">
+      <soap:operation soapAction="http://www.barcodesoft.com/datamatrix_font.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QRCode">
+      <soap:operation soapAction="http://www.barcodesoft.com/qrcode.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pdf417">
+      <soap:operation soapAction="http://www.barcodesoft.com/pdf417.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Aztec">
+      <soap:operation soapAction="http://www.barcodesoft.com/aztec.aspx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BarCodeWebServiceSoap12" type="tns:BarCodeWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Code39">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code39.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code39Ext">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code39ext.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Codabar">
+      <soap12:operation soapAction="http://www.barcodesoft.com/codabar.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="I25">
+      <soap12:operation soapAction="http://www.barcodesoft.com/i25.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code93">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code93.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128A">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code128a.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128B">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code128b.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code128C">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code128c.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GS1128">
+      <soap12:operation soapAction="http://www.barcodesoft.com/gs1128.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code25">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code25.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Code11">
+      <soap12:operation soapAction="http://www.barcodesoft.com/code11.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Telepen">
+      <soap12:operation soapAction="http://www.barcodesoft.com/telepen.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSI">
+      <soap12:operation soapAction="http://www.barcodesoft.com/msi.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPCA">
+      <soap12:operation soapAction="http://www.barcodesoft.com/upca.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPCE">
+      <soap12:operation soapAction="http://www.barcodesoft.com/upce.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EAN13">
+      <soap12:operation soapAction="http://www.barcodesoft.com/ean13.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EAN8">
+      <soap12:operation soapAction="http://www.barcodesoft.com/ean8.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BOOKLAND">
+      <soap12:operation soapAction="http://www.barcodesoft.com/bookland.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Datamatrix">
+      <soap12:operation soapAction="http://www.barcodesoft.com/datamatrix_font.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QRCode">
+      <soap12:operation soapAction="http://www.barcodesoft.com/qrcode.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pdf417">
+      <soap12:operation soapAction="http://www.barcodesoft.com/pdf417.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Aztec">
+      <soap12:operation soapAction="http://www.barcodesoft.com/aztec.aspx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BarCodeWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BarCodeSoft Webservice for Online BarCode Generation</wsdl:documentation>
+    <wsdl:port name="BarCodeWebServiceSoap" binding="tns:BarCodeWebServiceSoap">
+      <soap:address location="http://www.barcodesoft.com/bcdgen.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BarCodeWebServiceSoap12" binding="tns:BarCodeWebServiceSoap12">
+      <soap12:address location="http://www.barcodesoft.com/bcdgen.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

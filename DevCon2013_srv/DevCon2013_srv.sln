@@ -1,0 +1,15 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# Clarion 2.1.0.2447
+Project("") = "DevCon2013_srv", "DevCon2013_srv.aspxproj", "{A2041CD9-90D6-4F72-B603-98B758F2A547}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2041CD9-90D6-4F72-B603-98B758F2A547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2041CD9-90D6-4F72-B603-98B758F2A547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
